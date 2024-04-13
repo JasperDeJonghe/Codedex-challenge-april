@@ -9,7 +9,7 @@ let currTile;
 let otherTile;
 
 let questionsAsked = [false,false,false,false,false,false,false,false,false]
-let pointsNeeded = [50,50,50,50,50,50,50,50,50]
+let pointsNeeded = [100,350,700,1500,1800,2100,2400,2700,3000]
 
 questions = [
     "What type of games do you enjoy the most?",
@@ -298,17 +298,106 @@ function generateCandy() {
     }
 }
 
+// Update askQuestion function to display popup when score is reached
+let questionDisplayed = false;
+
 function askQuestion() {
     for (let i = 0; i < pointsNeeded.length; i++) {
         if (score >= pointsNeeded[i] && !questionsAsked[i]) {
-            console.log("\nQuestion " + (i + 1) + ": " + questions[i]);
-            for (let j = 0; j < choices[i].length; j++) {
-                console.log(choices[i][j]);
-            }
             questionsAsked[i] = true;
-            break; // Exit loop after asking the question
+
+            // Display popup with question and choices
+            displayQuestionPopup(i);
+
+            // Exit the function after displaying the first question popup
+            return;
         }
     }
 }
 
 
+function handleChoice(questionIndex, choiceIndex) {
+    // Handle user choice here
+    // For example, update score or perform other actions based on choice
+    // You can add your logic here based on the question and choice index
+    console.log("Question Index:", questionIndex);
+    console.log("Choice Index:", choiceIndex);
+
+    // Reset questionDisplayed to false after handling the choice
+    questionDisplayed = false;
+
+    askQuestion(); // Ask the next question if the score condition is met
+}
+
+
+function displayQuestionPopup(questionIndex) {
+    // Get modal element
+    var modal = document.getElementById("myModal");
+
+    // Remove close button
+    var closeButton = modal.querySelector(".close");
+    if (closeButton) {
+        closeButton.remove();
+    }
+
+    // Get question text and choices
+    var questionText = questions[questionIndex];
+    var questionChoices = choices[questionIndex];
+
+    // Set question text in modal
+    document.getElementById("question-text").innerText = questionText;
+
+    // Clear previous choices
+    var choicesContainer = document.getElementById("choices");
+    choicesContainer.innerHTML = "";
+
+    // Add choices to modal
+    questionChoices.forEach(function(choiceText, index) {
+        var choiceId = "choice-" + index;
+        var choiceElement = document.createElement("button");
+        choiceElement.innerText = choiceText;
+        choiceElement.setAttribute("id", choiceId);
+        choiceElement.addEventListener("click", function() {
+            // Handle user choice
+            handleChoice(questionIndex, index);
+            // Close the modal after answering
+            modal.style.display = "none";
+        });
+        choicesContainer.appendChild(choiceElement);
+    });
+
+    // Display modal
+    modal.style.display = "block";
+}
+
+
+function handleChoice(questionIndex, choiceIndex) {
+    // Handle user choice here
+    // For example, update score or perform other actions based on choice
+    // You can add your logic here based on the question and choice index
+    console.log("Question Index:", questionIndex);
+    console.log("Choice Index:", choiceIndex);
+
+    // Reset questionDisplayed to false after handling the choice
+    questionDisplayed = false;
+
+    // Assign points based on the choice and question
+    switch (choiceIndex) {
+        case 0: // A
+            if (questionIndex === 1 || questionIndex === 4 || questionIndex === 8) {
+                score += 3; // For questions 2, 5, and 9, option A gives 3 points
+            } else {
+                score += 3;
+            }
+            break;
+        case 1: // B
+            score += 2;
+            break;
+        case 2: // C
+            score += 1;
+            break;
+        default: // D and E
+            // No points assigned for D and E choices
+            break;
+    }
+}
