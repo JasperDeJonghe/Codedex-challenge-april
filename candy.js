@@ -3,6 +3,7 @@ const board = [];
 const rows = 9;
 const colums = 9;
 let score = 0;
+let turns = 0; // Variable to keep track of the number of turns
 
 let currTile;
 let otherTile;
@@ -102,16 +103,73 @@ function dragEnd() {
             let otherImg = otherTile.src;
             currTile.src = otherImg;
             otherTile.src = currImg;
+        } else {
+            turns++;
+            console.log("Turn:", turns);
         }
     }
 }
 
 function crushCandy() {
-    //crushFive();
-    //crushFour();
+    crushFive();
+    crushFour();
     crushThree();
     document.getElementById("score").innerText = score;
 }
+
+function crushFive() {
+    // Check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < colums - 4; c++) {
+            let candies = board[r].slice(c, c + 5); // Get five candies in a row
+            let allSame = candies.every(candy => candy.src === candies[0].src); // Check if all candies are the same
+            if (allSame && !candies[0].src.includes("blank")) {
+                candies.forEach(candy => candy.src = "./images/blank.png");
+                if (turns > 0) {score += 150;}
+                
+            }
+        }
+    }
+
+    // Check columns
+    for (let c = 0; c < colums; c++) {
+        for (let r = 0; r < rows - 4; r++) {
+            let candies = [board[r][c], board[r + 1][c], board[r + 2][c], board[r + 3][c], board[r + 4][c]]; // Get five candies in a column
+            let allSame = candies.every(candy => candy.src === candies[0].src); // Check if all candies are the same
+            if (allSame && !candies[0].src.includes("blank")) {
+                candies.forEach(candy => candy.src = "./images/blank.png");
+                if (turns > 0) {score += 150;}
+            }
+        }
+    }
+}
+
+function crushFour() {
+    // Check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < colums - 3; c++) {
+            let candies = board[r].slice(c, c + 4); // Get four candies in a row
+            let allSame = candies.every(candy => candy.src === candies[0].src); // Check if all candies are the same
+            if (allSame && !candies[0].src.includes("blank")) {
+                candies.forEach(candy => candy.src = "./images/blank.png");
+                if (turns > 0) {score += 75;}
+            }
+        }
+    }
+
+    // Check columns
+    for (let c = 0; c < colums; c++) {
+        for (let r = 0; r < rows - 3; r++) {
+            let candies = [board[r][c], board[r + 1][c], board[r + 2][c], board[r + 3][c]]; // Get four candies in a column
+            let allSame = candies.every(candy => candy.src === candies[0].src); // Check if all candies are the same
+            if (allSame && !candies[0].src.includes("blank")) {
+                candies.forEach(candy => candy.src = "./images/blank.png");
+                if (turns > 0) {score += 75;}
+            }
+        }
+    }
+}
+
 
 function crushThree() {
     //check rows
@@ -125,6 +183,7 @@ function crushThree() {
                 candy1.src = "./images/blank.png";
                 candy2.src = "./images/blank.png";
                 candy3.src = "./images/blank.png";
+                if (turns > 0) {score += 30;}
             }
         }
     }
@@ -139,7 +198,7 @@ function crushThree() {
                 candy1.src = "./images/blank.png";
                 candy2.src = "./images/blank.png";
                 candy3.src = "./images/blank.png";
-                score += 30;
+                if (turns > 0) {score += 30;}
             }
         }
     }
