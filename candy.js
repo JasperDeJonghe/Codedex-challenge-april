@@ -8,6 +8,9 @@ let turns = 0; // Variable to keep track of the number of turns
 let currTile;
 let otherTile;
 
+let questionsAsked = [false,false,false,false,false,false]
+let pointsNeeded = [100,200,250,300,350,400]
+
 window.onload = function() {
     startGame();
 
@@ -15,7 +18,21 @@ window.onload = function() {
         crushCandy();
         slideCandy();
         generateCandy();
+        askQuestion();
+        updateTasks();
     },100);
+}
+
+function updateTasks() {
+    const tasks = document.getElementById("tasks");
+    tasks.innerHTML = ""; // Clear the existing content
+
+    // Loop through the pointsNeeded array and create <p> elements for each task
+    for (let i = 0; i < pointsNeeded.length; i++) {
+        const task = document.createElement("p");
+        task.textContent = "Question " + (i + 1) + " : " + pointsNeeded[i] + " points";
+        tasks.appendChild(task);
+    }
 }
 
 function randomCandy() {
@@ -68,6 +85,7 @@ function dragLeave() {
 function dragDrop() {
     otherTile = this;
 }
+
 
 function dragEnd() {
 
@@ -253,6 +271,15 @@ function generateCandy() {
     for(let c = 0; c < colums; c++) {
         if (board[0][c].src.includes("blank")) {
             board[0][c].src = "./images/" + randomCandy() + ".png";
+        }
+    }
+}
+
+function askQuestion() {
+    for (let i = 0; i < pointsNeeded.length; i++) {
+        if (score >= pointsNeeded[i] && !questionsAsked[i]) {
+            console.log("Question", i + 1);
+            questionsAsked[i] = true; // Mark question as asked
         }
     }
 }
