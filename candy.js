@@ -8,8 +8,8 @@ let turns = 0; // Variable to keep track of the number of turns
 let currTile;
 let otherTile;
 
-let questionsAsked = [false,false,false,false,false,false]
-let pointsNeeded = [50,50,50,50,50,50]
+let questionsAsked = [false,false,false,false,false,false,false,false,false]
+let pointsNeeded = [50,50,50,50,50,50,50,50,50]
 
 questions = [
     "What type of games do you enjoy the most?",
@@ -23,9 +23,9 @@ questions = [
     "How important is the storyline and narrative in a game to you?"
 ]
 choices = [
-    ["A. Action/Adventure", "B. Role-playing", "C. Strategy", "D. Simulation", "E. Puzzle", "F. Sports/Racing", "G. Other (please specify)"],
+    ["A. Action/Adventure", "B. Role-playing", "C. Strategy", "D. Simulation", "E. Puzzle", "F. Sports/Racing", "G. Other"],
     ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
-    ["A. PC", "B. Console (PlayStation, Xbox, Nintendo Switch, etc.)", "C. Mobile", "D. I play on multiple platforms equally", "E. Other (please specify)"],
+    ["A. PC", "B. Console (PlayStation, Xbox, Nintendo Switch, etc.)", "C. Mobile", "D. I play on multiple platforms equally", "E. Other"],
     ["A. Less than 5 hours", "B. 5-10 hours", "C. 10-20 hours", "D. 20-30 hours", "E. More than 30 hours"],
     ["A. Mornings", "B. Afternoons", "C. Evenings", "D. Late nights", "E. Whenever I have free time, regardless of the time of day"],
     ["A. Single-player", "B. Multiplayer", "C. I enjoy both equally"],
@@ -299,30 +299,16 @@ function generateCandy() {
 }
 
 function askQuestion() {
-    if (score >= pointsNeeded[0] && !questionsAsked[0]) {
-        // Display the first question
-        console.log("\nQuestion 1: " + questions[0]);
-        questionsAsked[0] = true;
-    } else if (score >= pointsNeeded[1] && !questionsAsked[1]) {
-        // Display the second question
-        console.log("\nQuestion 2: " + questions[1]);
-        questionsAsked[1] = true;
-    } else if (score >= pointsNeeded[2] && !questionsAsked[2]) {
-        // Display the third question
-        console.log("\nQuestion 3: " + questions[2]);
-        questionsAsked[2] = true;
-    } else if (score >= pointsNeeded[3] && !questionsAsked[3]) {
-        // Display the fourth question
-        console.log("\nQuestion 4: " + questions[3]);
-        questionsAsked[3] = true;
-    } else if (score >= pointsNeeded[4] && !questionsAsked[4]) {
-        // Display the fifth question
-        console.log("\nQuestion 5: " + questions[4]);
-        questionsAsked[4] = true;
-    } else if (score >= pointsNeeded[5] && !questionsAsked[5]) {
-        // Display the sixth question
-        console.log("\nQuestion 6: " + questions[5]);
-        questionsAsked[5] = true;
+    for (let i = 0; i < pointsNeeded.length; i++) {
+        if (score >= pointsNeeded[i] && !questionsAsked[i]) {
+            console.log("\nQuestion " + (i + 1) + ": " + questions[i]);
+            for (let j = 0; j < choices[i].length; j++) {
+                console.log(choices[i][j]);
+            }
+            questionsAsked[i] = true;
+            break; // Exit loop after asking the question
+        }
     }
 }
+
 
