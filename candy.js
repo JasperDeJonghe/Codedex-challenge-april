@@ -9,7 +9,30 @@ let currTile;
 let otherTile;
 
 let questionsAsked = [false,false,false,false,false,false]
-let pointsNeeded = [100,200,250,300,350,400]
+let pointsNeeded = [50,50,50,50,50,50]
+
+questions = [
+    "What type of games do you enjoy the most?",
+    "How important are graphics and visuals in a game to you?",
+    "What platform do you primarily game on?",
+    "How many hours per week do you typically spend gaming?",
+    "When do you usually play games?",
+    "Do you prefer single-player or multiplayer games?",
+    "How do you feel about in-game purchases?",
+    "How do you react to losing in a game?",
+    "How important is the storyline and narrative in a game to you?"
+]
+choices = [
+    ["A. Action/Adventure", "B. Role-playing", "C. Strategy", "D. Simulation", "E. Puzzle", "F. Sports/Racing", "G. Other (please specify)"],
+    ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
+    ["A. PC", "B. Console (PlayStation, Xbox, Nintendo Switch, etc.)", "C. Mobile", "D. I play on multiple platforms equally", "E. Other (please specify)"],
+    ["A. Less than 5 hours", "B. 5-10 hours", "C. 10-20 hours", "D. 20-30 hours", "E. More than 30 hours"],
+    ["A. Mornings", "B. Afternoons", "C. Evenings", "D. Late nights", "E. Whenever I have free time, regardless of the time of day"],
+    ["A. Single-player", "B. Multiplayer", "C. I enjoy both equally"],
+    ["A. I'm fine with them if they're purely cosmetic and don't affect gameplay.", "B. I don't mind them as long as they enhance the gaming experience.", "C. I dislike them but tolerate them if the base game is good.", "D. I strongly dislike them and prefer games without any form of in-game purchases."],
+    ["A. I get frustrated easily and may rage quit.", "B. I feel disappointed but try again.", "C. Losing doesn't bother me much; it's part of the gaming experience.", "D. I rarely lose, but when I do, I take it as a challenge to improve."],
+    ["A. Extremely important; I prefer games with rich, immersive stories.", "B. Important, but gameplay matters more to me.", "C. Neutral; I enjoy games with and without strong narratives.", "D. Not very important; I care more about gameplay mechanics."]
+]
 
 window.onload = function() {
     startGame();
@@ -276,10 +299,30 @@ function generateCandy() {
 }
 
 function askQuestion() {
-    for (let i = 0; i < pointsNeeded.length; i++) {
-        if (score >= pointsNeeded[i] && !questionsAsked[i]) {
-            console.log("Question", i + 1);
-            questionsAsked[i] = true; // Mark question as asked
-        }
+    if (score >= pointsNeeded[0] && !questionsAsked[0]) {
+        // Display the first question
+        console.log("\nQuestion 1: " + questions[0]);
+        questionsAsked[0] = true;
+    } else if (score >= pointsNeeded[1] && !questionsAsked[1]) {
+        // Display the second question
+        console.log("\nQuestion 2: " + questions[1]);
+        questionsAsked[1] = true;
+    } else if (score >= pointsNeeded[2] && !questionsAsked[2]) {
+        // Display the third question
+        console.log("\nQuestion 3: " + questions[2]);
+        questionsAsked[2] = true;
+    } else if (score >= pointsNeeded[3] && !questionsAsked[3]) {
+        // Display the fourth question
+        console.log("\nQuestion 4: " + questions[3]);
+        questionsAsked[3] = true;
+    } else if (score >= pointsNeeded[4] && !questionsAsked[4]) {
+        // Display the fifth question
+        console.log("\nQuestion 5: " + questions[4]);
+        questionsAsked[4] = true;
+    } else if (score >= pointsNeeded[5] && !questionsAsked[5]) {
+        // Display the sixth question
+        console.log("\nQuestion 6: " + questions[5]);
+        questionsAsked[5] = true;
     }
 }
+
