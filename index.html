@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <link rel="stylesheet" href="candy.css">
     <script src="candy.js"></script>
 </head>
 <body>
     <div id="info">
-        <p>3 Candy = 30 points</p>
-        <p>4 Candy = 75 points</p>
-        <p>5 Candy = 150 points</p>
+        <p>3 in a row = 30 points</p>
+        <p>4 in a row = 75 points</p>
+        <p>5 in a row = 150 points</p>
     </div>
 
     <!-- Popup Modal -->
@@ -26,5 +27,13 @@
 
     <h1>Score: <span id="score">0</span></h1>
     <div id="board"></div>
+
+    <script>
+        const link = encodeURi(window.location.href);
+        const msg = encodeURIComponent('test');
+        
+        const fb = document.querySelector('.facebook');
+        fb.href = `https://www.facebook.com/share.php?u=${link}`;
+    </script>
 </body>
 </html>

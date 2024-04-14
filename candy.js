@@ -10,30 +10,30 @@ let scoreQuestions = 0;
 let currTile;
 let otherTile;
 
-let questionsAsked = [false/* ,false,false,false,false,false,false,false,false */];
-let pointsNeeded = [100/* ,350,700,1500,1800,2100,2400,2700,30 */];
+let questionsAsked = [false,false,false,false,false,false,false,false,false];
+let pointsNeeded = [1000,3500,7000,1500,1800,2100,2400,2700,30];
 
 questions = [
     "What type of games do you enjoy the most?",
-    /* "How important are graphics and visuals in a game to you?",
+    "How important are graphics and visuals in a game to you?",
     "What platform do you primarily game on?",
     "How many hours per week do you typically spend gaming?",
     "When do you usually play games?",
     "Do you prefer single-player or multiplayer games?",
     "How do you feel about in-game purchases?",
     "How do you react to losing in a game?",
-    "How important is the storyline and narrative in a game to you?" */
+    "How important is the storyline and narrative in a game to you?"
 ];
 choices = [
     ["A. Action/Adventure", "B. Role-playing", "C. Strategy", "D. Simulation", "E. Puzzle", "F. Sports/Racing", "G. Other"],
-    /* ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
+    ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
     ["A. PC", "B. Console (PlayStation, Xbox, Nintendo Switch, etc.)", "C. Mobile", "D. I play on multiple platforms equally", "E. Other"],
     ["A. Less than 5 hours", "B. 5-10 hours", "C. 10-20 hours", "D. 20-30 hours", "E. More than 30 hours"],
     ["A. Mornings", "B. Afternoons", "C. Evenings", "D. Late nights", "E. Whenever I have free time, regardless of the time of day"],
     ["A. Single-player", "B. Multiplayer", "C. I enjoy both equally"],
     ["A. I'm fine with them if they're purely cosmetic and don't affect gameplay.", "B. I don't mind them as long as they enhance the gaming experience.", "C. I dislike them but tolerate them if the base game is good.", "D. I strongly dislike them and prefer games without any form of in-game purchases."],
     ["A. I get frustrated easily and may rage quit.", "B. I feel disappointed but try again.", "C. Losing doesn't bother me much; it's part of the gaming experience.", "D. I rarely lose, but when I do, I take it as a challenge to improve."],
-    ["A. Extremely important; I prefer games with rich, immersive stories.", "B. Important, but gameplay matters more to me.", "C. Neutral; I enjoy games with and without strong narratives.", "D. Not very important; I care more about gameplay mechanics."] */
+    ["A. Extremely important; I prefer games with rich, immersive stories.", "B. Important, but gameplay matters more to me.", "C. Neutral; I enjoy games with and without strong narratives.", "D. Not very important; I care more about gameplay mechanics."]
 ];
 
 window.onload = function() {
@@ -367,7 +367,7 @@ function handleChoice(questionIndex, choiceIndex) {
     }
 
     // Close the modal after answering
-    document.getElementById("myModal").style.display = "none";
+    else {document.getElementById("myModal").style.display = "none";}
 }
 
 
@@ -402,18 +402,83 @@ function displayQuestionPopup(questionIndex) {
     // Display modal
     modal.style.display = "block";
 }
-
 function displayScoreQuestions() {
     // Get modal element
     let modal = document.getElementById("myModal");
 
-    // Set total scoreQuestions text in modal
-    document.getElementById("question-text").innerText = "Total score: " + scoreQuestions;
+    // Make output
+    let output = "";
+    if (scoreQuestions >= 0 && scoreQuestions <= 9) {
+        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Relaxed Observer.</h3><p>You wake up to the gentle chirping of birds outside your window. You stretch lazily, taking in the soft morning light filtering through the curtains. Today, you have no grand plans or adventures. Instead, you embrace the simple pleasures of observing the world around you. You spend your day leisurely, enjoying the beauty of nature and finding peace in the present moment.</p>";
+    } else if (scoreQuestions > 9 && scoreQuestions <= 14) {
+        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Laid-back Adventurer.</h3><p>As the sun rises, you eagerly prepare for another day of exploration and discovery. With a backpack slung over your shoulder and a map in hand, you set out to explore new trails and hidden corners of the world. Whether it's hiking through lush forests or diving into crystal-clear waters, you thrive on the thrill of adventure and the freedom of the open road.</p>";
+    } else if (scoreQuestions > 14 && scoreQuestions <= 19) {
+        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Casual Gamer.</h3><p>With a comfortable controller in hand, you sink into your favorite gaming chair, ready to embark on virtual adventures. Whether you're building cities, solving puzzles, or battling enemies, gaming is your ultimate escape from reality. You enjoy the challenge of each level and the satisfaction of completing quests, all while immersing yourself in captivating virtual worlds.</p>";
+    } else if (scoreQuestions > 19 && scoreQuestions <= 24) {
+        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Competitive Challenger.</h3><p>From the moment you wake up, you're fueled by a fierce determination to conquer any challenge that comes your way. Whether it's in the boardroom, on the sports field, or in the gaming arena, you thrive on competition. You push yourself to the limit, constantly striving to be the best and achieve victory, no matter the obstacles in your path.</p>";
+    } else if (scoreQuestions > 24 && scoreQuestions <= 30) {
+        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Enthusiastic Explorer.</h3><p>With boundless energy and an insatiable curiosity, you eagerly set out to explore the world around you. From bustling cities to remote wilderness, every corner of the globe is an opportunity for adventure. You immerse yourself in new cultures, try exotic foods, and make unforgettable memories with each new experience. For you, life is an endless journey of discovery and wonder.</p>";
+    }
+
+    
+
+    // Set output to question-text
+    document.getElementById("question-text").innerHTML = output;
 
     // Clear previous choices
     let choicesContainer = document.getElementById("choices");
     choicesContainer.innerHTML = "";
 
+    // Add social media share buttons
+    let shareButtons = document.createElement("div");
+    shareButtons.innerHTML = `
+        <button onclick="shareOnFacebook()">Share on Facebook</button>
+        <button onclick="shareOnTwitter()">Share on Twitter</button>
+        <button onclick="shareOnLinkedIn()">Share on LinkedIn</button>
+    `;
+    choicesContainer.appendChild(shareButtons);
+
     // Display modal
     modal.style.display = "block";
 }
+
+
+function getPersonality() {
+    if (scoreQuestions >= 0 && scoreQuestions <= 9) {
+        return "Relaxed Observer";
+    } else if (scoreQuestions > 9 && scoreQuestions <= 14) {
+        return "Laid-back Adventurer";
+    } else if (scoreQuestions > 14 && scoreQuestions <= 19) {
+        return "Casual Gamer";
+    } else if (scoreQuestions > 19 && scoreQuestions <= 24) {
+        return "Competitive Challenger";
+    } else if (scoreQuestions > 24 && scoreQuestions <= 30) {
+        return "Enthusiastic Explorer";
+    }
+}
+
+function shareOnFacebook() {
+    // Replace 'your-url' with the URL you want to share
+    let url = 'encodeURI(window.location.href)';
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+}
+
+function shareOnTwitter() {
+    // Replace 'your-text' with the text you want to share
+    let text = "my personality is " + getPersonality() + "!";
+    // Get the current page URL
+    let url = encodeURIComponent(window.location.href);
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + url, '_blank');
+}
+
+
+function shareOnLinkedIn() {
+    // Replace 'your-url' with the URL you want to share
+    let url = encodeURIComponent(window.location.href);
+    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+}
+
+
+
+
+
