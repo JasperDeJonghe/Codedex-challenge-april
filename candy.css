@@ -40,8 +40,8 @@ body {
 }
 
 #board {
-    width: 450px;
-    height: 450px;
+    width: 600px;
+    height: 600px;
     background-color: lightblue;
     border: 5px solid slategray;
     border-radius: 10px;
@@ -51,8 +51,8 @@ body {
 }
 
 #board img {
-    width: 50px;
-    height: 50px;
+    width: 66px;
+    height: 66px;
 }
 
 /* CSS for Modal Popup */

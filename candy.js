@@ -1,4 +1,4 @@
-const candies = ["Blue", "Orange", "Green", "Yellow", "Red", "Purple"];
+const candies = ["Apple", "Bot", "Bug", "Coin", "Controller", "Penguin"];
 const board = [];
 const rows = 9;
 const columns = 9;
@@ -319,13 +319,13 @@ function askQuestion() {
 
 function displayScoreQuestions() {
     // Get modal element
-    var modal = document.getElementById("myModal");
+    let modal = document.getElementById("myModal");
 
     // Set question text in modal
     document.getElementById("question-text").innerText = "Score Questions: " + scoreQuestions;
 
     // Clear previous choices
-    var choicesContainer = document.getElementById("choices");
+    let choicesContainer = document.getElementById("choices");
     choicesContainer.innerHTML = "";
 
     // Display modal
@@ -369,23 +369,23 @@ function handleChoice(questionIndex, choiceIndex) {
 
 function displayQuestionPopup(questionIndex) {
     // Get modal element
-    var modal = document.getElementById("myModal");
+    let modal = document.getElementById("myModal");
 
     // Get question text and choices
-    var questionText = questions[questionIndex];
-    var questionChoices = choices[questionIndex];
+    let questionText = questions[questionIndex];
+    let questionChoices = choices[questionIndex];
 
     // Set question text in modal
     document.getElementById("question-text").innerText = questionText;
 
     // Clear previous choices
-    var choicesContainer = document.getElementById("choices");
+    let choicesContainer = document.getElementById("choices");
     choicesContainer.innerHTML = "";
 
     // Add choices to modal
     questionChoices.forEach(function(choiceText, index) {
-        var choiceId = "choice-" + index;
-        var choiceElement = document.createElement("button");
+        let choiceId = "choice-" + index;
+        let choiceElement = document.createElement("button");
         choiceElement.innerText = choiceText;
         choiceElement.setAttribute("id", choiceId);
         choiceElement.addEventListener("click", function() {
