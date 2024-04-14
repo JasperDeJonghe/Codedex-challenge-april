@@ -37,6 +37,18 @@ choices = [
 ];
 
 window.onload = function() {
+    if (score == 0) {
+    const modal = document.getElementById("myModal2");
+    const startButton = document.getElementById("start-button");
+
+    modal.style.display = "block"; // Show the modal when the page loads
+
+    startButton.addEventListener("click", function() {
+        modal.style.display = "none"; // Close the modal when the start button is clicked
+    });
+
+    }
+
     startGame();
 
     window.setInterval(function() {
@@ -420,8 +432,6 @@ function displayScoreQuestions() {
         output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Enthusiastic Explorer.</h3><p>With boundless energy and an insatiable curiosity, you eagerly set out to explore the world around you. From bustling cities to remote wilderness, every corner of the globe is an opportunity for adventure. You immerse yourself in new cultures, try exotic foods, and make unforgettable memories with each new experience. For you, life is an endless journey of discovery and wonder.</p>";
     }
 
-    
-
     // Set output to question-text
     document.getElementById("question-text").innerHTML = output;
 
@@ -438,9 +448,18 @@ function displayScoreQuestions() {
     `;
     choicesContainer.appendChild(shareButtons);
 
+    // Add close button
+    let closeButton = document.createElement("button");
+    closeButton.textContent = "Close";
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    };
+    choicesContainer.appendChild(closeButton);
+
     // Display modal
     modal.style.display = "block";
 }
+
 
 
 function getPersonality() {
@@ -480,3 +499,4 @@ function shareOnLinkedIn() {
     let url = 'https://codedex-challenge-april.vercel.app/';
     window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&summary=' + encodeURIComponent(text), '_blank');
 }
+
