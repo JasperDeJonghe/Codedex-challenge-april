@@ -362,6 +362,10 @@ function handleChoice(questionIndex, choiceIndex) {
     }
     console.log("Score Questions:", scoreQuestions);
 
+    if(questionIndex == questions.length - 1) {
+        displayScoreQuestions();
+    }
+
     // Close the modal after answering
     document.getElementById("myModal").style.display = "none";
 }
@@ -394,6 +398,21 @@ function displayQuestionPopup(questionIndex) {
         });
         choicesContainer.appendChild(choiceElement);
     });
+
+    // Display modal
+    modal.style.display = "block";
+}
+
+function displayScoreQuestions() {
+    // Get modal element
+    let modal = document.getElementById("myModal");
+
+    // Set total scoreQuestions text in modal
+    document.getElementById("question-text").innerText = "Total score: " + scoreQuestions;
+
+    // Clear previous choices
+    let choicesContainer = document.getElementById("choices");
+    choicesContainer.innerHTML = "";
 
     // Display modal
     modal.style.display = "block";
