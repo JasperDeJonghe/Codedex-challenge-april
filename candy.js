@@ -304,13 +304,6 @@ function generateCandy() {
 let questionDisplayed = false;
 
 function askQuestion() {
-    let allQuestionsAnswered = questionsAsked.every(question => question); // Check if all questions have been answered
-
-    if (allQuestionsAnswered) {
-        // Display the scoreQuestions in the modal
-        displayScoreQuestions();
-        return;
-    }
 
     for (let i = 0; i < pointsNeeded.length; i++) {
         if (score >= pointsNeeded[i] && !questionsAsked[i]) {
@@ -323,7 +316,9 @@ function askQuestion() {
             return;
         }
     }
+
 }
+
 
 function displayScoreQuestions() {
     // Get modal element
@@ -388,6 +383,8 @@ function displayQuestionPopup(questionIndex) {
 
     // Display modal
     modal.style.display = "block";
+
+    
 }
 
 
@@ -413,4 +410,12 @@ function handleChoice(questionIndex, choiceIndex) {
             break;
     }
     console.log("Score Questions:", scoreQuestions);
+
+    const allQuestionsAsked = questionsAsked.every(question => question);
+
+    if (allQuestionsAsked) {
+        // Display modal with total scoreQuestions
+        displayScoreQuestions();
+        return; // Exit the function
+    }
 }
