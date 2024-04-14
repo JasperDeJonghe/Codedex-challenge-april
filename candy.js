@@ -5,33 +5,35 @@ const colums = 9;
 let score = 0;
 let turns = 0; // Variable to keep track of the number of turns
 
+let scoreQuestions = 0;
+
 let currTile;
 let otherTile;
 
-let questionsAsked = [false,false,false,false,false,false,false,false,false]
-let pointsNeeded = [100,350,700,1500,1800,2100,2400,2700,3000]
+let questionsAsked = [false/* ,false,false,false,false,false,false,false,false */]
+let pointsNeeded = [100/* ,350,700,1500,1800,2100,2400,2700,30 */]
 
 questions = [
     "What type of games do you enjoy the most?",
-    "How important are graphics and visuals in a game to you?",
+    /* "How important are graphics and visuals in a game to you?",
     "What platform do you primarily game on?",
     "How many hours per week do you typically spend gaming?",
     "When do you usually play games?",
     "Do you prefer single-player or multiplayer games?",
     "How do you feel about in-game purchases?",
     "How do you react to losing in a game?",
-    "How important is the storyline and narrative in a game to you?"
+    "How important is the storyline and narrative in a game to you?" */
 ]
 choices = [
     ["A. Action/Adventure", "B. Role-playing", "C. Strategy", "D. Simulation", "E. Puzzle", "F. Sports/Racing", "G. Other"],
-    ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
+    /* ["A. Extremely important", "B. Important, but not a deal-breaker", "C. Neutral", "D. Not very important", "E. I don't care about graphics at all"],
     ["A. PC", "B. Console (PlayStation, Xbox, Nintendo Switch, etc.)", "C. Mobile", "D. I play on multiple platforms equally", "E. Other"],
     ["A. Less than 5 hours", "B. 5-10 hours", "C. 10-20 hours", "D. 20-30 hours", "E. More than 30 hours"],
     ["A. Mornings", "B. Afternoons", "C. Evenings", "D. Late nights", "E. Whenever I have free time, regardless of the time of day"],
     ["A. Single-player", "B. Multiplayer", "C. I enjoy both equally"],
     ["A. I'm fine with them if they're purely cosmetic and don't affect gameplay.", "B. I don't mind them as long as they enhance the gaming experience.", "C. I dislike them but tolerate them if the base game is good.", "D. I strongly dislike them and prefer games without any form of in-game purchases."],
     ["A. I get frustrated easily and may rage quit.", "B. I feel disappointed but try again.", "C. Losing doesn't bother me much; it's part of the gaming experience.", "D. I rarely lose, but when I do, I take it as a challenge to improve."],
-    ["A. Extremely important; I prefer games with rich, immersive stories.", "B. Important, but gameplay matters more to me.", "C. Neutral; I enjoy games with and without strong narratives.", "D. Not very important; I care more about gameplay mechanics."]
+    ["A. Extremely important; I prefer games with rich, immersive stories.", "B. Important, but gameplay matters more to me.", "C. Neutral; I enjoy games with and without strong narratives.", "D. Not very important; I care more about gameplay mechanics."] */
 ]
 
 window.onload = function() {
@@ -334,12 +336,6 @@ function displayQuestionPopup(questionIndex) {
     // Get modal element
     var modal = document.getElementById("myModal");
 
-    // Remove close button
-    var closeButton = modal.querySelector(".close");
-    if (closeButton) {
-        closeButton.remove();
-    }
-
     // Get question text and choices
     var questionText = questions[questionIndex];
     var questionChoices = choices[questionIndex];
@@ -372,32 +368,45 @@ function displayQuestionPopup(questionIndex) {
 
 
 function handleChoice(questionIndex, choiceIndex) {
-    // Handle user choice here
-    // For example, update score or perform other actions based on choice
-    // You can add your logic here based on the question and choice index
     console.log("Question Index:", questionIndex);
     console.log("Choice Index:", choiceIndex);
 
-    // Reset questionDisplayed to false after handling the choice
     questionDisplayed = false;
 
     // Assign points based on the choice and question
     switch (choiceIndex) {
         case 0: // A
-            if (questionIndex === 1 || questionIndex === 4 || questionIndex === 8) {
-                score += 3; // For questions 2, 5, and 9, option A gives 3 points
-            } else {
-                score += 3;
-            }
+            scoreQuestions += 3;
             break;
         case 1: // B
-            score += 2;
+            scoreQuestions += 2;
             break;
         case 2: // C
-            score += 1;
+            scoreQuestions += 1;
             break;
         default: // D and E
             // No points assigned for D and E choices
             break;
     }
+
+    if (questionIndex === questions.length - 1) {
+        console.log("All questions answered!")
+        // Display total score modal after answering all questions
+        displayTotalScoreModal(scoreQuestions);
+    }
+
+
+    console.log("Score Questions:", scoreQuestions);
+}
+
+function displayTotalScoreModal(totalScore) {
+    console.log("Function called");
+    // Get modal element
+    var modal = document.getElementById("myModal");
+
+    // Set question text in modal
+    document.getElementById("question-text").innerText = totalScore.toString();
+
+    // Display modal
+    modal.style.display = "block";
 }
