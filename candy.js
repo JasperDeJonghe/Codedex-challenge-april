@@ -304,6 +304,14 @@ function generateCandy() {
 let questionDisplayed = false;
 
 function askQuestion() {
+    let allQuestionsAnswered = questionsAsked.every(question => question); // Check if all questions have been answered
+
+    if (allQuestionsAnswered) {
+        // Display the scoreQuestions in the modal
+        displayScoreQuestions();
+        return;
+    }
+
     for (let i = 0; i < pointsNeeded.length; i++) {
         if (score >= pointsNeeded[i] && !questionsAsked[i]) {
             questionsAsked[i] = true;
@@ -316,6 +324,22 @@ function askQuestion() {
         }
     }
 }
+
+function displayScoreQuestions() {
+    // Get modal element
+    var modal = document.getElementById("myModal");
+
+    // Set question text in modal
+    document.getElementById("question-text").innerText = "Score Questions: " + scoreQuestions;
+
+    // Clear previous choices
+    var choicesContainer = document.getElementById("choices");
+    choicesContainer.innerHTML = "";
+
+    // Display modal
+    modal.style.display = "block";
+}
+
 
 
 function handleChoice(questionIndex, choiceIndex) {
