@@ -459,7 +459,7 @@ function getPersonality() {
 
 function shareOnFacebook() {
     // Replace 'your-url' with the URL you want to share
-    let url = 'encodeURI(window.location.href)';
+    let url = 'https://codedex-challenge-april.vercel.app/';
     window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
 }
 
@@ -467,14 +467,14 @@ function shareOnTwitter() {
     // Replace 'your-text' with the text you want to share
     let text = "my personality is " + getPersonality() + "!";
     // Get the current page URL
-    let url = encodeURIComponent(window.location.href);
+    let url = 'https://codedex-challenge-april.vercel.app/';
     window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + url, '_blank');
 }
 
 
 function shareOnLinkedIn() {
     // Replace 'your-url' with the URL you want to share
-    let url = encodeURIComponent(window.location.href);
+    let url = 'https://codedex-challenge-april.vercel.app/';
     window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
 }
 
