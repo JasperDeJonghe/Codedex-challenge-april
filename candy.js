@@ -388,25 +388,5 @@ function handleChoice(questionIndex, choiceIndex) {
             // No points assigned for D and E choices
             break;
     }
-
-    if (questionIndex === questions.length - 1) {
-        console.log("All questions answered!")
-        // Display total score modal after answering all questions
-        displayTotalScoreModal(scoreQuestions);
-    }
-
-
     console.log("Score Questions:", scoreQuestions);
-}
-
-function displayTotalScoreModal(totalScore) {
-    console.log("Function called");
-    // Get modal element
-    var modal = document.getElementById("myModal");
-
-    // Set question text in modal
-    document.getElementById("question-text").innerText = totalScore.toString();
-
-    // Display modal
-    modal.style.display = "block";
 }
