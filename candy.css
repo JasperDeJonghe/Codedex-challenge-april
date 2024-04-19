@@ -13,33 +13,41 @@ body {
     text-align: center;
 }
 
+h1 {
+    font-size: 3.5vh;
+}
+
 #info, #tasks {
     text-align: left;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    /* position: absolute; */
+    /* top: 20px;
+    left: 20px; */
     background-color: rgba(173, 216, 230, 0.6);
     backdrop-filter: blur(15px);
-    font-size: 20px;
-    border: 5px solid slategray;
+    font-size: 1.8vh;
+    border: 0.2vw solid slategray;
     border-radius: 0px;
     padding: 10px;
     font-weight: bold;
     color: white;
 }
+#infoContainer {
+    position: fixed;
+}
 
 #info {
-    top: 20px;
-    left: 20px;
-    width: 250px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
+    /* top: 20px;
+    left: 20px; */
+    width: 23vh; /* Adjust width as needed */
+    height: 8vh; /* Adjust height as needed */
 }
 
 #tasks {
-    top: 170px;
+    margin-top: 1vh;
+    /* top: 170px;
     left: 20px; /* Adjust left position to separate from #info */
-    width: 250px; /* Adjust width as needed */
-    height: 400px; /* Adjust height as needed */
+    width: 23vh; /* Adjust width as needed */
+    height: 41vh; /* Adjust height as needed */
 }
 
 #info p {
@@ -113,7 +121,7 @@ body {
 footer, footer a{
     color: rgba(255, 255, 255, 0.675);
     text-align: center;
-    font-size: 20px;
+    font-size: 2vh;
     padding: 20px 0;
     position: fixed;
     width: 100%;

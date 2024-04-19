@@ -63,7 +63,12 @@ window.onload = function() {
 function updateTasks() {
     const tasks = document.getElementById("tasks");
     tasks.innerHTML = ""; // Clear the existing content
-
+    
+    // Add header "Points Needed"
+    const header = document.createElement("h3");
+    header.textContent = "Points Needed:";
+    tasks.appendChild(header);
+    
     // Loop through the pointsNeeded array and create <p> elements for each task
     for (let i = 0; i < pointsNeeded.length; i++) {
         const task = document.createElement("p");
@@ -71,6 +76,7 @@ function updateTasks() {
         tasks.appendChild(task);
     }
 }
+
 
 function randomCandy() {
     return candies[Math.floor(Math.random() * candies.length)];
