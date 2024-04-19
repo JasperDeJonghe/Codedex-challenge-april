@@ -47,8 +47,8 @@ body {
 }
 
 #board {
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
     background-color: rgba(173, 216, 230, 0.6);
     backdrop-filter: blur(15px);
     border: 5px solid slategray;
@@ -59,8 +59,8 @@ body {
 }
 
 #board img {
-    width: 66px;
-    height: 66px;
+    width: 44px;
+    height: 44px;
 }
 
 /* CSS for Modal Popup */
