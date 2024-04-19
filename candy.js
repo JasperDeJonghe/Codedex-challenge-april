@@ -1,4 +1,4 @@
-const candies = ["Apple", "cat", "Bug", "dog", "Controller", "Penguin"];
+const candies = ["toriGate", "cat", "Bug", "dog", "Controller", "Penguin"];
 const board = [];
 const rows = 9;
 const columns = 9;
