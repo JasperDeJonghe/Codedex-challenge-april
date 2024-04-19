@@ -1,4 +1,4 @@
-const candies = ["toriGate", "cat", "Bug", "dog", "Controller", "Penguin"];
+const candies = ["toriGate", "cat", "sushi", "dog", "fan", "cherry"];
 const board = [];
 const rows = 9;
 const columns = 9;
@@ -11,7 +11,7 @@ let currTile;
 let otherTile;
 
 let questionsAsked = [false,false,false,false,false,false,false,false,false];
-let pointsNeeded = [1000,3500,7000,1500,1800,2100,2400,2700,30];
+let pointsNeeded = [100,350,700,1500,1800,2100,2400,2700,3000];
 
 questions = [
     "What type of games do you enjoy the most?",
