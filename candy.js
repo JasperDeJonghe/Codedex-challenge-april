@@ -483,7 +483,6 @@ function getPersonality() {
 }
 
 function shareOnFacebook() {
-    // Replace 'your-text' with the text you want to share
     let text = "My personality is " + getPersonality() + "!";
     // Get the current page URL
     let url = 'https://codedex-challenge-april.vercel.app/';
@@ -491,7 +490,6 @@ function shareOnFacebook() {
 }
 
 function shareOnTwitter() {
-    // Replace 'your-text' with the text you want to share
     let text = "My personality is " + getPersonality() + "!";
     // Get the current page URL
     let url = 'https://codedex-challenge-april.vercel.app/';
@@ -499,10 +497,14 @@ function shareOnTwitter() {
 }
 
 function shareOnLinkedIn() {
-    // Replace 'your-text' with the text you want to share
     let text = "My personality is " + getPersonality() + "!";
     // Get the current page URL
     let url = 'https://codedex-challenge-april.vercel.app/';
     window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url) + '&summary=' + encodeURIComponent(text), '_blank');
 }
 
+function updatePBar(progressBar, value) {
+    value = Math.round(value);
+    progressBar.querySelector(".progress_fill").style.width = `${value}%`;
+    progressBar.querySelector(".progress_text").textContent = `${value}%`;
+}

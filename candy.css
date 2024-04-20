@@ -118,16 +118,45 @@ h1 {
     color: white;
 }
 
-footer, footer a{
+footer, footer a {
     color: rgba(255, 255, 255, 0.675);
     text-align: center;
     font-size: 2vh;
     padding: 20px 0;
     position: fixed;
     width: 100%;
-    bottom: 0;
+    bottom: 6vh; /* Adjusted to accommodate the progress bar */
     left: 0;
     right: 0;
-
     text-decoration: none;
+}
+
+.progress {
+    position: fixed;
+    width: 70%;
+    height: 6vh;
+    background-color: rgba(173, 216, 230, 0.45);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5vh;
+    overflow: hidden;
+    bottom: 2vh;
+    z-index: 2;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress_fill {
+    width: 0%;
+    height: 100%;
+    background-color: rgba(206, 42, 195, 0.429);
+    transition: all 0.3s;
+}
+
+.progress_text {
+    font-size: 5vh;
+    position: absolute;
+    top: 0;
+    right: 1vh;
+    font-weight: bold;
 }
