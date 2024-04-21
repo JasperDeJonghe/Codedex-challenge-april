@@ -4,6 +4,7 @@ const rows = 9;
 const columns = 9;
 let score = 0;
 let turns = 0; // Variable to keep track of the number of turns
+let pointsLeft;
 
 let scoreQuestions = 0;
 
@@ -38,15 +39,14 @@ choices = [
 
 window.onload = function() {
     if (score == 0) {
-    const modal = document.getElementById("myModal2");
-    const startButton = document.getElementById("start-button");
+        const modal = document.getElementById("myModal2");
+        const startButton = document.getElementById("start-button");
 
-    modal.style.display = "block"; // Show the modal when the page loads
+        modal.style.display = "block"; // Show the modal when the page loads
 
-    startButton.addEventListener("click", function() {
-        modal.style.display = "none"; // Close the modal when the start button is clicked
-    });
-
+        startButton.addEventListener("click", function() {
+            modal.style.display = "none"; // Close the modal when the start button is clicked
+        });
     }
 
     startGame();
@@ -57,8 +57,20 @@ window.onload = function() {
         generateCandy();
         askQuestion();
         updateTasks();
-    },100);
+
+        // Update pointsLeft
+        for (let i = 0; i < questionsAsked.length; i++) {
+            if (questionsAsked[i]) {
+                pointsLeft = pointsNeeded[i] - score;
+            }
+        }
+
+        // Update the content of the span with id "pointsNeeded"
+        const points = document.getElementById('pointsNeeded');
+        points.innerHTML = pointsLeft.toString();
+    }, 100);
 };
+
 
 function updateTasks() {
     const tasks = document.getElementById("tasks");
@@ -427,15 +439,15 @@ function displayScoreQuestions() {
     // Make output
     let output = "";
     if (scoreQuestions >= 0 && scoreQuestions <= 9) {
-        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Relaxed Observer.</h3><p>You wake up to the gentle chirping of birds outside your window. You stretch lazily, taking in the soft morning light filtering through the curtains. Today, you have no grand plans or adventures. Instead, you embrace the simple pleasures of observing the world around you. You spend your day leisurely, enjoying the beauty of nature and finding peace in the present moment.</p>";
+        output = "<h2>You are the Relaxed Observer.</h3><p>You wake up to the gentle chirping of birds outside your window. You stretch lazily, taking in the soft morning light filtering through the curtains. Today, you have no grand plans or adventures. Instead, you embrace the simple pleasures of observing the world around you. You spend your day leisurely, enjoying the beauty of nature and finding peace in the present moment.</p>";
     } else if (scoreQuestions > 9 && scoreQuestions <= 14) {
-        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Laid-back Adventurer.</h3><p>As the sun rises, you eagerly prepare for another day of exploration and discovery. With a backpack slung over your shoulder and a map in hand, you set out to explore new trails and hidden corners of the world. Whether it's hiking through lush forests or diving into crystal-clear waters, you thrive on the thrill of adventure and the freedom of the open road.</p>";
+        output = ".h2>You are the Laid-back Adventurer.</h3><p>As the sun rises, you eagerly prepare for another day of exploration and discovery. With a backpack slung over your shoulder and a map in hand, you set out to explore new trails and hidden corners of the world. Whether it's hiking through lush forests or diving into crystal-clear waters, you thrive on the thrill of adventure and the freedom of the open road.</p>";
     } else if (scoreQuestions > 14 && scoreQuestions <= 19) {
-        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Casual Gamer.</h3><p>With a comfortable controller in hand, you sink into your favorite gaming chair, ready to embark on virtual adventures. Whether you're building cities, solving puzzles, or battling enemies, gaming is your ultimate escape from reality. You enjoy the challenge of each level and the satisfaction of completing quests, all while immersing yourself in captivating virtual worlds.</p>";
+        output = ".<h2>You are the Casual Gamer.</h3><p>With a comfortable controller in hand, you sink into your favorite gaming chair, ready to embark on virtual adventures. Whether you're building cities, solving puzzles, or battling enemies, gaming is your ultimate escape from reality. You enjoy the challenge of each level and the satisfaction of completing quests, all while immersing yourself in captivating virtual worlds.</p>";
     } else if (scoreQuestions > 19 && scoreQuestions <= 24) {
-        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Competitive Challenger.</h3><p>From the moment you wake up, you're fueled by a fierce determination to conquer any challenge that comes your way. Whether it's in the boardroom, on the sports field, or in the gaming arena, you thrive on competition. You push yourself to the limit, constantly striving to be the best and achieve victory, no matter the obstacles in your path.</p>";
+        output = ".<h2>You are the Competitive Challenger.</h3><p>From the moment you wake up, you're fueled by a fierce determination to conquer any challenge that comes your way. Whether it's in the boardroom, on the sports field, or in the gaming arena, you thrive on competition. You push yourself to the limit, constantly striving to be the best and achieve victory, no matter the obstacles in your path.</p>";
     } else if (scoreQuestions > 24 && scoreQuestions <= 30) {
-        output = "<h2>You got a score of " + scoreQuestions + ".</h2><h3>You are the Enthusiastic Explorer.</h3><p>With boundless energy and an insatiable curiosity, you eagerly set out to explore the world around you. From bustling cities to remote wilderness, every corner of the globe is an opportunity for adventure. You immerse yourself in new cultures, try exotic foods, and make unforgettable memories with each new experience. For you, life is an endless journey of discovery and wonder.</p>";
+        output = ".<h2>You are the Enthusiastic Explorer.</h3><p>With boundless energy and an insatiable curiosity, you eagerly set out to explore the world around you. From bustling cities to remote wilderness, every corner of the globe is an opportunity for adventure. You immerse yourself in new cultures, try exotic foods, and make unforgettable memories with each new experience. For you, life is an endless journey of discovery and wonder.</p>";
     }
 
     // Set output to question-text
