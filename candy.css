@@ -172,3 +172,60 @@ footer, footer a {
     top: 50%;
     transform: translateY(-50%);
 }
+
+/* Update CSS for smaller screens */
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    h1 {
+        font-size: 24px; /* Adjust heading font size */
+    }
+
+    #infoContainer {
+        position: relative; /* Adjust position for smaller screens */
+        margin-top: 20px; /* Add some margin for spacing */
+    }
+
+    #info, #tasks {
+        width: 90%; /* Adjust width for smaller screens */
+        margin: 0 auto; /* Center the elements */
+    }
+
+    #info p, #tasks p {
+        font-size: 14px; /* Adjust paragraph font size */
+    }
+
+    #boardContainer {
+        position: relative; /* Adjust position for smaller screens */
+        margin-top: 20px; /* Add some margin for spacing */
+    }
+
+    #board {
+        width: 90%; /* Adjust board width */
+        height: auto; /* Allow board height to adjust */
+        margin: 0 auto; /* Center the board */
+    }
+
+    #board img {
+        width: 15%; /* Adjust candy size */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .modal-content {
+        margin: 10% auto; /* Adjust modal margin */
+        width: 90%; /* Adjust modal width */
+        font-size: 16px; /* Adjust modal font size */
+    }
+
+    .modal-content button {
+        font-size: 16px; /* Adjust modal button font size */
+        padding: 10px 15px; /* Adjust modal button padding */
+    }
+
+    footer {
+        font-size: 12px; /* Adjust footer font size */
+        margin-top: 20px; /* Add some margin for spacing */
+    }
+}
