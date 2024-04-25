@@ -70,6 +70,8 @@ h1 {
 #board img {
     width: calc(70vh / 9);
     height: calc(70vh / 9);
+
+    cursor: move;
 }
 
 /* CSS for Modal Popup */
